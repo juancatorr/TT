@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Todo Tango</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="todo_tango">Todo Tango</string>
+    <string name="play">&#62;</string>
+    <string name="pausa">&#124;&#124;</string>
+    <string name="rev">&#60;&#60;</string>
+    <string name="ff">&#62;&#62;</string>
+    <string name="musica">Música</string>
+    <string name="lentra">Letra</string>
+    <string name="canta">Canta</string>
+    <string name="orquesta">Orquesta</string>
+</resources>
