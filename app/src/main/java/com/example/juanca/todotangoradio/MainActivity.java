@@ -6,9 +6,11 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.Bundle;
@@ -18,8 +20,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.com.juanca.todotangoradio.clases.ClaseCancion;
@@ -36,72 +41,85 @@ public class MainActivity extends Activity {
     private SeekBar sb;
     private boolean musicBound=false;
     private Intent playIntent;
+    private boolean enReproduccion = true;
+    private TextView cancionTextView;
+    private TextView artistaTextView;
+    private TextView letraTextView;
+    private TextView orquestaTextView;
+    private TextView musicaTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar ac = getActionBar();
+        cancionTextView = (TextView) findViewById(R.id.song_title);
+        artistaTextView = (TextView) findViewById(R.id.song_artist);
+        letraTextView = (TextView) findViewById(R.id.song_letra);
+        orquestaTextView = (TextView) findViewById(R.id.song_orquesta);
+        musicaTextView = (TextView) findViewById(R.id.song_musica);
 
-
-        view_lista_canciones = (ListView) this.findViewById(R.id.list_view_temas);
-        sb = (SeekBar) findViewById(R.id.seekBar);
+//        view_lista_canciones = (ListView) this.findViewById(R.id.list_view_temas);
+//        sb = (SeekBar) findViewById(R.id.seekBar);
 
         canciones =(ArrayList<ClaseCancion>) ClaseComunicador.getObjeto();
-        final CancionAdapter songAdt = new CancionAdapter(this, canciones);
-        view_lista_canciones.setAdapter(songAdt);
+
+//        final CancionAdapter songAdt = new CancionAdapter(this, canciones);
+//        view_lista_canciones.setAdapter(songAdt);
 
 
-        view_lista_canciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        view_lista_canciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                servicioMusica.setSong(position);
+//                servicioMusica.reproducirCancion();
+//
+//                if(((Button) findViewById(R.id.button_play)).getText() == getString(R.string.play)){
+//                    ((Button) findViewById(R.id.button_play)).setText(R.string.pausa);
+//                }
+//            }
+//        });
 
-                servicioMusica.setSong(position);
-                servicioMusica.reproducirCancion();
 
-                if(((Button) findViewById(R.id.button_play)).getText() == getString(R.string.play)){
-                    ((Button) findViewById(R.id.button_play)).setText(R.string.pausa);
-                }
-            }
-        });
-
-
-        ((Button) findViewById(R.id.button_ff)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) findViewById(R.id.button_ff)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (((Button) findViewById(R.id.button_play)).getText() == getString(R.string.play)) {
-                    ((Button) findViewById(R.id.button_play)).setText(R.string.pausa);
-                }
+                //if (((ImageButton) findViewById(R.id.button_play)).getText() == getString(R.string.play)) {
+                  //  ((ImageButton) findViewById(R.id.button_play)).setText(R.string.pausa);
+                //}
                 servicioMusica.reproducirNext();
             }
         });
 
-        ((Button) findViewById(R.id.button_rew)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) findViewById(R.id.button_rew)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (((Button) findViewById(R.id.button_play)).getText() == getString(R.string.play)) {
-                    ((Button) findViewById(R.id.button_play)).setText(R.string.pausa);
-                }
+                //if (((Button) findViewById(R.id.button_play)).getText() == getString(R.string.play)) {
+                  //  ((Button) findViewById(R.id.button_play)).setText(R.string.pausa);
+                //}
                 servicioMusica.reproducirPrev();
             }
         });
 
-        ((Button) findViewById(R.id.button_play)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) findViewById(R.id.button_play)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                if (((Button) findViewById(R.id.button_play)).getText() == getString(R.string.play)) {
-                    ((Button) findViewById(R.id.button_play)).setText(R.string.pausa);
-                    servicioMusica.reanudar();
-
-                }else{
+                if (enReproduccion) {
+                  //  ((Button) findViewById(R.id.button_play)).setText(R.string.pausa);
                     servicioMusica.pausar();
-                    ((Button) findViewById(R.id.button_play)).setText(R.string.play);
+                    enReproduccion=false;
+
+                } else {
+                    servicioMusica.reanudar();
+                    enReproduccion=true;
+                    //((Button) findViewById(R.id.button_play)).setText(R.string.play);
                 }
             }
         });
@@ -118,6 +136,10 @@ public class MainActivity extends Activity {
             servicioMusica = binder.getService();
             servicioMusica.setList(canciones);
             musicBound=true;
+
+            servicioMusica.setSong(0);
+            servicioMusica.reproducirCancion();
+            enReproduccion=true;
         }
 
         @Override
@@ -135,6 +157,11 @@ public class MainActivity extends Activity {
             bindService(playIntent,coneccionMusica, Context.BIND_AUTO_CREATE);
             startService(playIntent);
         }
+
+        MyReceiver myReceiver = new MyReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("MY_ACTION");
+        registerReceiver(myReceiver, intentFilter);
     }
 
 
@@ -167,4 +194,34 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private static void metodo(){
+
+    }
+
+    private class MyReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context arg0, Intent arg1) {
+            // TODO Auto-generated method stub
+
+            int datapassed = arg1.getIntExtra("DATAPASSED", 0);
+
+            establecerCancion(datapassed);
+
+        }
+
+    }
+
+    private void establecerCancion (int songId){
+
+        //get song using position
+        ClaseCancion currSong = canciones.get(songId);
+
+        //get title and artist strings
+        cancionTextView.setText(currSong.getTitulo());
+        artistaTextView.setText(getString(R.string.canta) + ": " + currSong.getCanta());
+        letraTextView.setText(getString(R.string.lentra) + ": " + currSong.getLetra());
+        orquestaTextView.setText(getString(R.string.orquesta) + ": " + currSong.getOrquesta());
+        musicaTextView.setText(getString(R.string.musica) + ": " + currSong.getMusica());
+    }
 }

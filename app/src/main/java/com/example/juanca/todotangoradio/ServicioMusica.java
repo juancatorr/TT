@@ -41,6 +41,7 @@ public class ServicioMusica extends Service implements MediaPlayer.OnPreparedLis
 
         inicioReproductorMusica();
 
+
     }
 
     @Override
@@ -94,6 +95,11 @@ public class ServicioMusica extends Service implements MediaPlayer.OnPreparedLis
 
         startForeground(NOTIFY_ID, notificacion);
 
+        Intent intentcion = new Intent();
+        intentcion.setAction("MY_ACTION");
+        intentcion.putExtra("DATAPASSED", posicionCancion);
+        sendBroadcast(intentcion);
+
     }
 
 
@@ -130,6 +136,7 @@ public class ServicioMusica extends Service implements MediaPlayer.OnPreparedLis
     public class MusicaBinder extends Binder {
         ServicioMusica getService(){
             return ServicioMusica.this;
+
         }
     }
 
@@ -161,7 +168,16 @@ public class ServicioMusica extends Service implements MediaPlayer.OnPreparedLis
     public  void reanudar(){
         reproductor.start();
     }
+
     public void setSong(int songIndex){
         posicionCancion=songIndex;
     }
+
+
+    public int obtenerPocisionCancion(){
+
+        return posicionCancion;
+    }
+
+
 }

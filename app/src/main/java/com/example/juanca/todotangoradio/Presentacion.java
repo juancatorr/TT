@@ -25,9 +25,6 @@ public class Presentacion extends Activity {
         CargarXmlTask tarea = new CargarXmlTask();
         tarea.execute();
 
-
-        ActionBar ac = getActionBar();
-
     }
 
     private class CargarXmlTask extends AsyncTask<String,Integer,Boolean> {

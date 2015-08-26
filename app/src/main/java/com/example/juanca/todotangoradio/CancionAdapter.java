@@ -7,15 +7,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.lang.String;
+
 import com.com.juanca.todotangoradio.clases.ClaseCancion;
 
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-
-import static android.provider.Settings.Global.getString;
 
 /**
  * Created by Juanca on 3/8/15.
