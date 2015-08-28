@@ -24,49 +24,56 @@
 
 
     <TextView
+        android:layout_marginTop="70dp"
         android:id="@+id/song_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="40sp"
         android:textStyle="bold"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:typeface="serif"/>
 
     <TextView
         android:id="@+id/song_artist"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/greey"
-        android:textSize="18sp"
+        android:textSize="30sp"
         android:layout_below="@id/song_title"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:typeface="serif"/>
 
     <TextView
         android:id="@+id/song_letra"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/greey"
-        android:textSize="18sp"
+        android:textSize="30sp"
         android:layout_below="@id/song_artist"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:typeface="serif"/>
 
     <TextView
         android:id="@+id/song_orquesta"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/greey"
-        android:textSize="18sp"
+        android:textSize="30sp"
         android:layout_below="@id/song_letra"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:typeface="serif"/>
 
     <TextView
         android:id="@+id/song_musica"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/greey"
-        android:textSize="18sp"
+        android:textSize="30sp"
         android:layout_below="@id/song_orquesta"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:typeface="serif"
+        android:text="@string/cargando"/>
 
     <!--<TextView-->
         <!--android:id="@+id/song_descripcion"-->
@@ -86,11 +93,13 @@
             android:layout_height="100dp"
             android:src="@drawable/tt_prev"
             android:id="@+id/button_rew"
-            android:layout_alignParentBottom="true"
             android:layout_toLeftOf="@+id/button_play"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:background="@color/black"/>
+            android:background="@color/black"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="40dp" />
 
 
         <ImageButton
@@ -98,22 +107,24 @@
             android:layout_height="150dp"
             android:src="@drawable/tt_play"
             android:id="@+id/button_play"
-            android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:background="@color/black"/>
+            android:background="@color/black"
+            android:layout_alignParentBottom="true"/>
 
         <ImageButton
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/tt_next"
             android:id="@+id/button_ff"
-            android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/button_play"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:background="@color/black"/>
+            android:background="@color/black"
+            android:layout_marginLeft="5dp"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="40dp"/>
 
         <!--<SeekBar-->
             <!--android:layout_width="match_parent"-->

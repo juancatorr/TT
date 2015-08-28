@@ -12,4 +12,5 @@
     <string name="lentra">Letra</string>
     <string name="canta">Canta</string>
     <string name="orquesta">Orquesta</string>
+    <string name="cargando">Cargando...</string>
 </resources>

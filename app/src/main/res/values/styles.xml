@@ -1,7 +1,12 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
+    </style>
 
+    <style name="actionbarEstilo" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:gravity">right</item>
+        <item name="android:height">50dp</item>
+        <item name="height">50dp</item>
     </style>
     </resources>

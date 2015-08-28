@@ -1,31 +1,26 @@
 package com.example.juanca.todotangoradio;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.app.Service;
-
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.graphics.BitmapFactory;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.IBinder;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import com.com.juanca.todotangoradio.clases.ClaseCancion;
 
@@ -55,6 +50,16 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        getActionBar().setIcon(android.R.color.transparent);
+        //BitmapDrawable background = new BitmapDrawable (BitmapFactory.decodeResource(getResources(), R.drawable.header));
+        //background.setTileModeX(Shader.TileMode.REPEAT);
+        //getActionBar().setBackgroundDrawable(background);
+
+        Drawable d=getResources().getDrawable(R.drawable.header);
+
+        getActionBar().setBackgroundDrawable(d);
+        
         cancionTextView = (TextView) findViewById(R.id.song_title);
         artistaTextView = (TextView) findViewById(R.id.song_artist);
         letraTextView = (TextView) findViewById(R.id.song_letra);
@@ -112,14 +117,14 @@ public class MainActivity extends Activity {
 
 
                 if (enReproduccion) {
-                  //  ((Button) findViewById(R.id.button_play)).setText(R.string.pausa);
                     servicioMusica.pausar();
+                    ((ImageButton) findViewById(R.id.button_play)).setImageResource(R.drawable.tt_play);
                     enReproduccion=false;
 
                 } else {
                     servicioMusica.reanudar();
+                    ((ImageButton) findViewById(R.id.button_play)).setImageResource(R.drawable.tt_pausa);
                     enReproduccion=true;
-                    //((Button) findViewById(R.id.button_play)).setText(R.string.play);
                 }
             }
         });
@@ -139,6 +144,7 @@ public class MainActivity extends Activity {
 
             servicioMusica.setSong(0);
             servicioMusica.reproducirCancion();
+            ((ImageButton) findViewById(R.id.button_play)).setImageResource(R.drawable.tt_pausa);
             enReproduccion=true;
         }
 
@@ -208,6 +214,8 @@ public class MainActivity extends Activity {
 
             establecerCancion(datapassed);
 
+            ((ImageButton) findViewById(R.id.button_play)).setImageResource(R.drawable.tt_pausa);
+            enReproduccion=true;
         }
 
     }
