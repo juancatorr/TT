@@ -1,4 +1,4 @@
-package com.example.juanca.todotangoradio;
+package com.todotango.app;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -7,13 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.graphics.BitmapFactory;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.IBinder;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +18,7 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.com.juanca.todotangoradio.clases.ClaseCancion;
+import com.todotango.clases.ClaseCancion;
 
 import java.util.ArrayList;
 
@@ -59,7 +55,7 @@ public class MainActivity extends Activity {
         Drawable d=getResources().getDrawable(R.drawable.header);
 
         getActionBar().setBackgroundDrawable(d);
-        
+
         cancionTextView = (TextView) findViewById(R.id.song_title);
         artistaTextView = (TextView) findViewById(R.id.song_artist);
         letraTextView = (TextView) findViewById(R.id.song_letra);

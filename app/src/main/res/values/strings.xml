@@ -8,9 +8,9 @@
     <string name="pausa">&#124;&#124;</string>
     <string name="rev">&#60;&#60;</string>
     <string name="ff">&#62;&#62;</string>
-    <string name="musica">Música</string>
-    <string name="lentra">Letra</string>
-    <string name="canta">Canta</string>
-    <string name="orquesta">Orquesta</string>
-    <string name="cargando">Cargando...</string>
+    <string name="musica" translatable="false">Música</string>
+    <string name="lentra" translatable="false">Letra</string>
+    <string name="canta" translatable="false">Canta</string>
+    <string name="orquesta" translatable="false">Orquesta</string>
+    <string name="cargando" translatable="false">Cargando...</string>
 </resources>

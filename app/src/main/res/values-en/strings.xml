@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Todo Tango</string>
+    <string name="canta" translatable="false">Sings</string>
+    <string name="cargando" translatable="false">Loading...</string>
+    <string name="lentra" translatable="false">Lyrics</string>
+    <string name="musica">Music</string>
+    <string name="orquesta" translatable="false">Orchestra</string>
+</resources>

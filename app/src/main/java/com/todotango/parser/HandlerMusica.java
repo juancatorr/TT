@@ -1,6 +1,6 @@
-package com.juanca.todotango.parser;
+package com.todotango.parser;
 
-import com.com.juanca.todotangoradio.clases.ClaseCancion;
+import com.todotango.clases.ClaseCancion;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

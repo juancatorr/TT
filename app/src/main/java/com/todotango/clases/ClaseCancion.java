@@ -1,4 +1,4 @@
-package com.com.juanca.todotangoradio.clases;
+package com.todotango.clases;
 
 /**
  * Created by Juanca on 10/8/15.

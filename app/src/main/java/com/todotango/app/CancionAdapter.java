@@ -1,4 +1,4 @@
-package com.example.juanca.todotangoradio;
+package com.todotango.app;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.com.juanca.todotangoradio.clases.ClaseCancion;
+import com.todotango.clases.ClaseCancion;
 
 
 import java.util.ArrayList;

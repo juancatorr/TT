@@ -1,4 +1,4 @@
-package com.example.juanca.todotangoradio;
+package com.todotango.app;
 
 /**
  * Created by Juanca on 14/8/15.
